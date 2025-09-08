@@ -25,6 +25,6 @@ jobs:
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20  # Vercel action to deploy
         with:
-          vercel_token: ${{ secrets.VERCEL_TOKEN }}  # Vercel API token (from GitHub Secrets)
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}  
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Vercel token passed as an environment variable
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  
