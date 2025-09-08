@@ -28,6 +28,6 @@ jobs:
 
       - name: Deploy to Vercel
         run: |
-          npx vercel --token ${{ secrets.VERCEL_TOKEN }} --yes  # Add --yes flag to bypass confirmation
+          npx vercel --token ${{ secrets.VERCEL_TOKEN }} --yes --name form_actions  # Replace with valid project name
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Vercel token for authentication
