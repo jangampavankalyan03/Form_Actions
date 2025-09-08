@@ -10,20 +10,43 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Using Ubuntu runner
-    
+    runs-on: ubuntu-latest # Using Ubuntu runner
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Checkout the code
+        uses: actions/checkout@v3 # Checkout the code
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3  # Set up Node.js environment
+        uses: actions/setup-node@v3 # Set up Node.js environment
         with:
-          node-version: '22'  # Use Node.js version 16 (or your version)
+          node-version: "22" # Use Node.js version 16 (or your version)
 
       - name: Install dependencies
-        run: npm install  # Install the dependencies
+        run: npm install # Install the dependencies
 
       - name: Build React app
-        run: npm run build  # Create the production build of the React app
+        run: npm run build # Create the production build of the React app
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Gmail notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "🚀 New Merge into Master - ${{ github.repository }}"
+          to: person1@example.com, person2@example.com
+          from: "CI/CD Bot <${{ secrets.EMAIL_USERNAME }}>"
+          body: |
+            Hello Team,
 
+            A new merge was pushed into the master branch.
+
+            ✅ Repo: ${{ github.repository }}
+            🔑 Commit: ${{ github.sha }}
+            👤 By: ${{ github.actor }}
+
+            Cheers,
+            GitHub Actions
