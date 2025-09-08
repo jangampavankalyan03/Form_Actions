@@ -38,7 +38,7 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "🚀 New Merge into Master - ${{ github.repository }}"
-          to: person1@example.com, person2@example.com
+          to: pavankalyan.pk2003@gmail.com,jangampavankalyan03@gmail.com
           from: "CI/CD Bot <${{ secrets.EMAIL_USERNAME }}>"
           body: |
             Hello Team,
