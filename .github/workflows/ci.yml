@@ -1,0 +1,32 @@
+name: React CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Using Ubuntu runner
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Checkout the code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Set up Node.js environment
+        with:
+          node-version: '22'  # Use Node.js version 16 (or your version)
+
+      - name: Install dependencies
+        run: npm install  # Install the dependencies
+
+      - name: Run tests
+        run: npm test -- --coverage  # Run tests (with code coverage)
+
+      - name: Build React app
+        run: npm run build  # Create the production build of the React app
+
