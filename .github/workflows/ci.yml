@@ -27,6 +27,7 @@ jobs:
       - name: Build React app
         run: npm run build # Create the production build of the React app
   notify:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Send Gmail notification
