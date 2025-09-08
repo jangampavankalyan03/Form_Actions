@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Using Ubuntu runner for the deployment job
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
