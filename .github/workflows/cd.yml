@@ -1,0 +1,30 @@
+name: Deploy to Vercel
+
+on:
+  workflow_run:
+    workflows: ["React CI Pipeline"]  # Name of the CI workflow
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Using Ubuntu runner for the deployment job
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Checkout the repository code
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Set up Node.js environment
+        with:
+          node-version: '22'  # Ensure the Node version matches the CI job
+
+      - name: Install dependencies
+        run: npm install  # Install dependencies again for the deployment job
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20  # Vercel action to deploy
+        with:
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}  # Vercel API token (from GitHub Secrets)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Vercel token passed as an environment variable
