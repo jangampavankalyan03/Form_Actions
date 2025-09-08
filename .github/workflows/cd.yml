@@ -19,12 +19,12 @@ jobs:
         with:
           node-version: '22'  # Ensure the Node version matches the CI job
 
-      - name: Install dependencies
-        run: npm install  # Install dependencies again for the deployment job
+      # Skip installing dependencies here if they were installed in the CI job
+      # If necessary, you can still run 'npm install' here, but usually it's not needed
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20  # Vercel action to deploy
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}  # Corrected token input name
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}  # Vercel Token for authentication
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Corrected environment variable name
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Set the Vercel token as an environment variable
